@@ -1,60 +1,55 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+    <v-navigation-drawer app temporary fixed v-model="sideNav">
+    </v-navigation-drawer>
+    <v-toolbar fixed color="primary" dark>
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor:pointer">
+          VueShare
+        </router-link> 
+      </v-toolbar-title> 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+      <v-text-field flex prepend-icon="search" placeholder="Search posts" color="accent" single-line
+       hide-details> </v-text-field>
+       <v-spacer></v-spacer>
+       <v-toolbar-items class="hidden-xs-only">
+         <v-btn flat v-for="item in horizontalNavItems" :key="item.title" :to="item.link" >
+         <v-icon class="hidden-sm-only">{{item.icon}}</v-icon>
+         {{item.title}}
+         </v-btn>
+       </v-toolbar-items>
+    </v-toolbar>
+    <main>
+      <v-container class="mt-4">
+      <router-view/>
+      </v-container>
+    </main> 
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
+  name:'App',
+  data(){
+    return{
+      sideNav:false
+    }
   },
+  computed:{
 
-  data: () => ({
-    //
-  }),
+    horizontalNavItems(){
+      return[
+        {icon:'chat', title:'Posts',link:'/posts'},
+        {icon:'lock_open', title:'Sign In',link:'/signin'},
+        {icon:'create', title:'Sign Up',link:'/signup'}
+      ]
+    }
+  },
+  methods:{
+    toggleSideNav(){
+      this.sideNav=!this.sideNav;
+    }
+  }
 };
 </script>
