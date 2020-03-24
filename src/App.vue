@@ -1,10 +1,29 @@
 <template>
-  <v-app>
+  <v-app style="background:#E3E3EE">
     <v-navigation-drawer app temporary fixed v-model="sideNav">
+      <v-toolbar color="accent" dark flat>
+        <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
+        <router-link to="/" tag="span" style="cursor:pointer">
+          <h1 class="title">VueShare</h1>
+        </router-link>
+      </v-toolbar>
+      <v-divider></v-divider>
+
+      <v-list>
+        <v-list-tile v-for="item in sideNavItems" :key="item.title" :to="item.link">
+          <v-list-tile-action>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            {{item.title}}
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
     </v-navigation-drawer>
+
     <v-toolbar fixed color="primary" dark>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>
+      <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
+      <v-toolbar-title class="hidden-xs-only">
         <router-link to="/" tag="span" style="cursor:pointer">
           VueShare
         </router-link> 
@@ -44,6 +63,14 @@ export default {
         {icon:'lock_open', title:'Sign In',link:'/signin'},
         {icon:'create', title:'Sign Up',link:'/signup'}
       ]
+    },
+
+    sideNavItems(){
+      return[
+        {icon:'chat', title:'Posts',link:'/posts'},
+        {icon:'lock_open', title:'Sign In',link:'/signin'},
+        {icon:'create', title:'Sign Up',link:'/signup'}
+      ];
     }
   },
   methods:{
