@@ -2,7 +2,7 @@
   <v-app style="background:#E3E3EE">
     <v-navigation-drawer app temporary fixed v-model="sideNav">
       <v-toolbar color="accent" dark flat>
-        <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
+        <v-app-bar><v-app-bar-nav-icon @click="toggleSideNav"> </v-app-bar-nav-icon></v-app-bar>
         <router-link to="/" tag="span" style="cursor:pointer">
           <h1 class="title">VueShare</h1>
         </router-link>
@@ -10,19 +10,20 @@
       <v-divider></v-divider>
 
       <v-list>
-        <v-list-tile v-for="item in sideNavItems" :key="item.title" :to="item.link">
-          <v-list-tile-action>
+        <v-list-item v-for="item in sideNavItems" :key="item.title" :to="item.link">
+          <v-list-item-action>
             <v-icon>{{item.icon}}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
+          </v-list-item-action>
+          <v-list-item-content>
             {{item.title}}
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
     <v-toolbar fixed color="primary" dark>
-      <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
+      <!-- <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon> -->
+      <v-app-bar-nav-icon @click="toggleSideNav"></v-app-bar-nav-icon>
       <v-toolbar-title class="hidden-xs-only">
         <router-link to="/" tag="span" style="cursor:pointer">
           VueShare
@@ -33,7 +34,7 @@
        hide-details> </v-text-field>
        <v-spacer></v-spacer>
        <v-toolbar-items class="hidden-xs-only">
-         <v-btn flat v-for="item in horizontalNavItems" :key="item.title" :to="item.link" >
+         <v-btn v-for="item in horizontalNavItems" :key="item.title" :to="item.link" >
          <v-icon class="hidden-sm-only">{{item.icon}}</v-icon>
          {{item.title}}
          </v-btn>
