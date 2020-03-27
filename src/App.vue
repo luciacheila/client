@@ -34,7 +34,7 @@
       <v-text-field flex prepend-icon="search" placeholder="Search posts" color="accent" single-line hide-details> </v-text-field>
        <v-spacer></v-spacer>
        <v-toolbar-items class="hidden-xs-only">
-         <v-btn v-for="item in horizontalNavItems" :key="item.title" :to="item.link" >
+         <v-btn color="primary"  dark v-for="item in horizontalNavItems" :key="item.title" :to="item.link" >
          <v-icon class="hidden-sm-only" >{{item.icon}}</v-icon>
          {{item.title}}
          </v-btn>
