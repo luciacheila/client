@@ -2,7 +2,7 @@
   <v-app style="background:#E3E3EE">
     <v-navigation-drawer app temporary fixed v-model="sideNav">
       <v-toolbar color="accent" dark flat>
-        <v-app-bar><v-app-bar-nav-icon @click="toggleSideNav"> </v-app-bar-nav-icon></v-app-bar>
+        <v-app-bar-nav-icon @click="toggleSideNav"> </v-app-bar-nav-icon>
         <router-link to="/" tag="span" style="cursor:pointer">
           <h1 class="title">VueShare</h1>
         </router-link>
@@ -30,16 +30,17 @@
         </router-link> 
       </v-toolbar-title> 
       <v-spacer></v-spacer>
-      <v-text-field flex prepend-icon="search" placeholder="Search posts" color="accent" single-line
-       hide-details> </v-text-field>
+      
+      <v-text-field flex prepend-icon="search" placeholder="Search posts" color="accent" single-line hide-details> </v-text-field>
        <v-spacer></v-spacer>
        <v-toolbar-items class="hidden-xs-only">
          <v-btn v-for="item in horizontalNavItems" :key="item.title" :to="item.link" >
-         <v-icon class="hidden-sm-only">{{item.icon}}</v-icon>
+         <v-icon class="hidden-sm-only" >{{item.icon}}</v-icon>
          {{item.title}}
          </v-btn>
        </v-toolbar-items>
     </v-toolbar>
+
     <main>
       <v-container class="mt-4">
       <router-view/>
